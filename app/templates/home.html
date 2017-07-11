@@ -1,1 +1,9 @@
-<h1>Home</h1>
+<div class="container">
+    <h1> Home</h1>
+    <div class="row">
+        <div><button ng-click="home.startTimer()">Start Session</button>{{home.message}}</div>
+    </div>
+    <div class="row">
+        <div>{{home.pomodoro}}<button ng-click= "home.stopTimer()">Stop Session</button></div>
+    </div>
+</div>

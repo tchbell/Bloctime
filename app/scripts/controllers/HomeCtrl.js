@@ -1,7 +1,7 @@
 (function(){
     function HomeCtrl($interval){
         
-        this.fiveMin = 300000;
+        this.fiveMin = 3000;
         this.timer = null;
         this.pomodoro = 0;
         var time = 5000;
@@ -18,24 +18,28 @@
             }
         }
         
-        this.startTimer = function(){
-            //var time = 5000;
+        this.startTimer = function(time){
             this.message = "Timer Started " + time;
                    this.timer = $interval(
-//                       function(){
-//                        time -=1000;
-//                        this.message = format(time);
-//                        console.log(this.message);
-//                    }
-                     updateTimer()  , 1000)
-
+                               function(){
+                                   if(time > 0){
+                                        time -=1000;
+                                        this.message = format(time);
+                                        console.log(time);
+                                   }else{
+                                       $interval.cancel;
+                                   }
+                               }, 1000)
+                    
         }
         
-        var updateTimer = function() {
-            time -=1000;
-            this.message = format(time);
-            console.log(this.message);
-        }
+        var timerStop = $interval.cancel(this.timer);
+        
+//        var updateTimer = function() {
+//            time -=1000;
+//            this.message = format(time);
+//            console.log(this.message);
+//        }
         
         this.stopTimer = function(){
             this.message = "Timer Stopped";

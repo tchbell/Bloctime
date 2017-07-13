@@ -1,9 +1,13 @@
 <div class="container">
     <h1> Home</h1>
     <div class="row">
-        <div><button ng-click="home.startTimer(home.fiveMin)">Start Session</button>{{home.message}}</div>
+        <div><button ng-click="home.workTimer()" ng-disabled="home.timerOn">Start Session</button></div>
     </div>
     <div class="row">
-        <div>{{home.pomodoro}}<button ng-click= "home.stopTimer()">Stop Session</button></div>
+        <div><button ng-click="home.restTimer()" ng-disabled="home.timerOn">Start Rest</button></div>
     </div>
+    <div class="row">
+        <div><button ng-click= "home.stopTimer()">Stop Session</button></div>
+    </div>
+    <div class = "row">{{home.message}}</div>
 </div>

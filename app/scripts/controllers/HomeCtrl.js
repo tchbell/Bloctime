@@ -1,39 +1,27 @@
 (function(){
-    function HomeCtrl($interval){
+    function HomeCtrl(Timer, $interval){
+
+        this.timerOn = false;
         
-        this.fiveMin = 3000;
-        this.timer = null;
-        this.pomodoro = 0;
-        var time = 5000;
         
-        var format = function(time){
-            var makeToSeconds = time/1000;
-            var seconds = Math.floor(makeToSeconds%60);
-            var minutes = Math.floor(makeToSeconds / 60);
-                
-            if(seconds < 10){
-                return  minutes + ":0" + seconds
-            }else{
-                return minutes + ":" + seconds
+        var startTimer = function(time){
+            this.timerOn = true;
+            this.message = "Timer has started";
+            Timer.timerStart(time);
+
             }
+        
+        this.workTimer = function(){
+            startTimer(3000);
         }
         
-        this.startTimer = function(time){
-            this.message = "Timer Started " + time;
-                   this.timer = $interval(
-                               function(){
-                                   if(time > 0){
-                                        time -=1000;
-                                        this.message = format(time);
-                                        console.log(time);
-                                   }else{
-                                       $interval.cancel;
-                                   }
-                               }, 1000)
-                    
-        }
         
-        var timerStop = $interval.cancel(this.timer);
+        this.restTimer = function(){
+            startTimer(2000);
+            
+        };
+        
+
         
 //        var updateTimer = function() {
 //            time -=1000;
@@ -42,12 +30,14 @@
 //        }
         
         this.stopTimer = function(){
-            this.message = "Timer Stopped";
-            $interval.cancel(this.timer);
+            Timer.timerStop();
+            this.timerOn = false;
+            this.message = "Timer has stopped";
+            
         }    
     }
     
     angular
         .module("Bloctime")
-        .controller("HomeCtrl", ["$interval", HomeCtrl]);
+        .controller("HomeCtrl", ["Timer", "$interval", HomeCtrl]);
 })();

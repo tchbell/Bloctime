@@ -2,6 +2,9 @@
     function HomeCtrl(Timer, $interval){
         var pomodoro = 2;
         var onBreak = false;
+        const WORKSESSION = 1500000;
+        const BREAKSESSION = 300000;
+        const LONGBREAK = 1800000;
         
         
         

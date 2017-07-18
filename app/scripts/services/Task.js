@@ -7,7 +7,7 @@
             all:tasks, 
             
             addTask: function(){
-                    tasks.$add({task: this.taskName})
+                    tasks.$add({task: this.taskName, created: firebase.database.ServerValue.TIMESTAMP})
             }
             
         }

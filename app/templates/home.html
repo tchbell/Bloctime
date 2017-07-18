@@ -9,7 +9,19 @@
     <div class="row">
         <div><button ng-click= "home.stopTimer()">Stop Session</button></div>
     </div>
-    <button ng-click = "home.timer()">Toggle</button>{{home.timerOn()}}
     <div class="row">{{home.message}}</div>
     <div>{{home.showTimerVal()}}</div>
+    
+    <div>
+        <form name = "addTask" ng-submit = "home.addTask()">
+            <fieldset>
+                <input type="text" id="name" ng-model= "home.taskName" placeholder= "Enter Task" required>
+            </fieldset>
+            <input type="submit" class="add-btn" value= "Add">
+        </form>
+        
+        <ul>
+            <li ng-repeat= "task in home.tasks">{{task.task}}</li>
+        </ul>
+    </div>
 </div>

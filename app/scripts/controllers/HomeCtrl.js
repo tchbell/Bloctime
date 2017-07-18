@@ -1,5 +1,5 @@
 (function () {
-    function HomeCtrl(Ding, $interval) {
+    function HomeCtrl(Task, Ding, $interval) {
         var timer = null;
         var pomodoro = 2;
         var onBreak = false;
@@ -116,10 +116,18 @@
             this.startSession = "Now click here to start another work session";
             this.sessionRest = "";
         };
+        
+        //Tasks
+        this.tasks = Task.all;
+        console.log(Task.all);
+        
+        this.taskName = "";
+        
+        this.addTask = Task.addTask;
 
     }
     
     angular
         .module("Bloctime")
-        .controller("HomeCtrl", ["Ding", "$interval", HomeCtrl]);
+        .controller("HomeCtrl", ["Task", "Ding", "$interval", HomeCtrl]);
 })();

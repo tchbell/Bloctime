@@ -4,13 +4,12 @@
         <div><button ng-click="home.workTimer()" ng-disabled="home.disable()">Start Session</button>{{home.startSession}}</div>
     </div>
     <div class="row">
-        <div><button ng-click="home.restTimer()" ng-disabled="home.timerOn()">Start Rest</button>{{home.sessionRest}}</div>
+        <div><button ng-click="home.restTimer()" ng-disabled="home.timerRunning()">Start Rest</button>{{home.sessionRest}}</div>
     </div>
     <div class="row">
         <div><button ng-click= "home.stopTimer()">Stop Session</button></div>
     </div>
     <button ng-click = "home.timer()">Toggle</button>{{home.timerOn()}}
-    <div class = "row">{{home.getMessage()}}</div>
-    <div class="row">{{home.message()}}</div>
-    <div class><button ng-click="home.ding()">Ding</button></div>
+    <div class="row">{{home.message}}</div>
+    <div>{{home.showTimerVal()}}</div>
 </div>

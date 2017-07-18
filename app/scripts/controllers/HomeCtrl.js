@@ -1,5 +1,5 @@
 (function(){
-    function HomeCtrl(Timer, $interval){
+    function HomeCtrl(Ding, Timer, $interval){
         var pomodoro = 2;
         var onBreak = false;
         const WORKSESSION = 1500000;
@@ -10,7 +10,7 @@
         
         
         //config telling if timer is running or not
-        //not final
+        //still editing
         this.timerOn = function(){
            return Timer.isOn;
         };
@@ -21,7 +21,7 @@
             }else{
                 Timer.isOn = true;
             }
-            console.log(this.timerOn());
+          //  console.log(this.timerOn());
         };
         
        
@@ -31,6 +31,7 @@
         //Instructions
         this.startSession = "Start Here";
         this.sessionRest = "";
+
         
         var startTimer = function(time){
             Timer.timerStart(time);
@@ -91,10 +92,14 @@
         //showing timer
         //needs work
         this.getMessage = function(){
-            return Timer.message;
-            console.log(Timer.message);
         }
         
+        this.message = function(){
+        
+        }
+        
+
+
 
         
 //        var updateTimer = function() {
@@ -108,5 +113,5 @@
     
     angular
         .module("Bloctime")
-        .controller("HomeCtrl", ["Timer", "$interval", HomeCtrl]);
+        .controller("HomeCtrl", ["Ding", "Timer", "$interval", HomeCtrl]);
 })();

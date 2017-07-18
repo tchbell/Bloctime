@@ -1,5 +1,5 @@
 (function () {
-    function Timer($interval) {
+    function Timer(Ding, $interval) {
         
         var timer = null;
         
@@ -13,7 +13,13 @@
             } else {
                 return minutes + ":" + seconds;
             }
+
         };
+        
+        
+        var ding = function(){
+            return Ding.noisePlay();
+        }
     
         
         return {
@@ -27,18 +33,17 @@
             timerStart: function (time) {
             // Console says its not a function
              //   Timer.turnOn();
+                
                 timer = $interval(
                     function () {
                         Timer.isOn = true;
-                        console.log(Timer.isOn);
                         if (time > 0) {
-                            Timer.message = "Timer has started " + format(time);
-                            console.log(Timer.message);
                             time -= 1000;
+                            console.log(format(time));
                         } else {
+                            ding();
                             $interval.cancel(timer);
                             Timer.message = "Timer completed";
-                            console.log(Timer.message);
                             Timer.isOn = false;
                         }
                     },1000);
@@ -49,7 +54,6 @@
             timerStop: function () {
                 $interval.cancel(timer);
                 Timer.isOn = false;
-                console.log(Timer.message);
             }
             
             
@@ -59,7 +63,7 @@
     }
     angular
         .module('Bloctime')
-        .factory('Timer', ['$interval', Timer])
+        .factory('Timer', ['Ding', '$interval', Timer])
 })();
     
     

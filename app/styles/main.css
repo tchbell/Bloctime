@@ -1,0 +1,15 @@
+.mainHeading{
+    border-bottom:2px solid black;
+    padding-bottom: 1em;
+}
+
+
+.timerValue{
+    font-size:72px;
+}
+
+
+ul{
+    list-style: none;
+}
+

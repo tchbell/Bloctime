@@ -1,12 +1,13 @@
 (function () {
     function HomeCtrl(Task, Ding, $interval) {
         var timer = null;
-        var pomodoro = 2;
+        var pomodoro = 0;
         var onBreak = false;
         var WORKSESSION = 1500000;  //25min
         var BREAKSESSION = 300000;  //5min
         var LONGBREAK = 1800000;    //30min
-        this.message = "";
+        this.message = "Ready?!";
+        this.consecutiveSessions = 0;
         
         //Alert Noise
         var ding = function () {
@@ -56,6 +57,7 @@
         
 
         var timerStart = function (time) {
+            timerVal = format(time);
                 timer = $interval(
                     function () {
                         if (time > 0) {
@@ -78,6 +80,7 @@
         
         this.stopTimer = function () {
             this.message = "Timer has stopped";
+            this.consecutiveSessions = 0;
             $interval.cancel(timer);
             timerVal = "0:00";
             timerOn = false;
@@ -89,10 +92,10 @@
         this.workTimer = function () {
             pomodoro++;
             this.message = "Begin work!";
-            startTimer(3000);
+            startTimer(WORKSESSION);
             if (pomodoro < 4) {
                 this.startSession = "";
-                this.sessionRest = "Once timer completes click here to start rest period";
+                this.sessionRest = "Once timer completes click Start Rest to being rest timer";
                 onBreak = true;
             } else {
                 this.startSession = "";
@@ -104,16 +107,17 @@
         
         
         this.restTimer = function () {
+            this.consecutiveSessions++;
             if (pomodoro === 4) {
                 this.message = "Rest has begun";
-                startTimer(5000);
+                startTimer(LONGBREAK);
                 onBreak = false;
                 pomodoro = 0;
             } else {
-                startTimer(2000);
+                startTimer(BREAKSESSION);
                 onBreak = false;
             }
-            this.startSession = "Now click here to start another work session";
+            this.startSession = "Now click Start Session start another work session";
             this.sessionRest = "";
         };
         

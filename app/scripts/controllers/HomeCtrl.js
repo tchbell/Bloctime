@@ -123,11 +123,11 @@
         
         //Tasks
         this.tasks = Task.all;
-        console.log(Task.all);
         
         this.taskName = "";
         
         this.addTask = Task.addTask;
+        this.removeTask = Task.deleteTask;
 
     }
     

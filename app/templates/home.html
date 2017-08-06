@@ -1,10 +1,10 @@
 <div class="container">
     <h1 class="mainHeading">Bloctime</h1>
-    <h2>{{home.message}}</h2>
-    <p>Consecutive Sessions: {{home.consecutiveSessions}}</p>
     
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
+            <h2>{{home.message}}</h2>
+            <p>Consecutive Sessions: {{home.consecutiveSessions}}</p>
             <button ng-click="home.workTimer()" ng-disabled="home.disable()">Start Session</button>
             <button ng-click="home.restTimer()" ng-disabled="home.timerRunning()">Start Rest</button>
             <button ng-click= "home.stopTimer()">Stop Session</button>
@@ -12,16 +12,17 @@
             <div class="timerValue">{{home.showTimerVal()}}</div>
         </div>
         
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <form name = "addTask" ng-submit = "home.addTask()">
                 <fieldset>
+                    <h2>Add Task</h2>
                     <input type="text" id="name" ng-model= "home.taskName" placeholder= "Enter Task" required>
                 </fieldset>
                 <input type="submit" class="add-btn" value= "Add">
             </form>
-            <h3>To-do List</h3>
+            <h2>To-do List</h2>
             <ul>
-                <li ng-repeat= "task in home.tasks | orderBy: '-created'">{{task.task}}</li>
+                <li ng-repeat= "task in home.tasks | orderBy: '-created'">{{task.task}}<i ng-click="home.removeTask(task)" class="task-delete fa fa-times" aria-hidden="true"></i></li>
             </ul>
         </div>
     </div>

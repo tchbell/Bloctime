@@ -11,5 +11,10 @@
 
 ul{
     list-style: none;
+    padding-left:0;
 }
 
+.task-delete{
+    padding-left:.5em;
+    color:red;
+}

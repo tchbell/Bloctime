@@ -95,7 +95,7 @@
             startTimer(WORKSESSION);
             if (pomodoro < 4) {
                 this.startSession = "";
-                this.sessionRest = "Once timer completes click Start Rest to being rest timer";
+                this.sessionRest = "Once timer completes click Start Rest to begin rest timer";
                 onBreak = true;
             } else {
                 this.startSession = "";
